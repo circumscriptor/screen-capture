@@ -18,25 +18,23 @@
 
 #include "screen-capture/screen-capture_export.hpp"
 
-namespace sc
-{
+namespace sc {
 
 /**
  * @brief Main interface
  */
-class SCREEN_CAPTURE_EXPORT screen_capture
-{
+class SCREEN_CAPTURE_EXPORT screen_capture {
 public:
-  screen_capture() = default;
-  screen_capture(const screen_capture&) = delete;
-  screen_capture(screen_capture&&) = delete;
-  auto operator=(const screen_capture&) -> screen_capture& = delete;
-  auto operator=(screen_capture&&) -> screen_capture& = delete;
-  virtual ~screen_capture();
+    screen_capture()                                         = default;
+    screen_capture(const screen_capture&)                    = delete;
+    screen_capture(screen_capture&&)                         = delete;
+    auto operator=(const screen_capture&) -> screen_capture& = delete;
+    auto operator=(screen_capture&&) -> screen_capture&      = delete;
+    virtual ~screen_capture();
 
 private:
-  // SCREEN_CAPTURE_SUPPRESS_C4251
-  // std::string m_name;
+    // SCREEN_CAPTURE_SUPPRESS_C4251
+    // std::string m_name;
 };
 
-}  // namespace sc
+} // namespace sc

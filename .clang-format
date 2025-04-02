@@ -1,36 +1,16 @@
 ---
 Language: Cpp
-AccessModifierOffset: -2
+AccessModifierOffset: -4
 AlignAfterOpenBracket: Align
-AlignArrayOfStructures: None
+AlignArrayOfStructures: Right
 AlignConsecutiveAssignments:
-  Enabled: false
-  AcrossEmptyLines: false
-  AcrossComments: false
-  AlignCompound: false
-  AlignFunctionPointers: false
-  PadOperators: false
+  Enabled: true
 AlignConsecutiveBitFields:
-  Enabled: false
-  AcrossEmptyLines: false
-  AcrossComments: false
-  AlignCompound: false
-  AlignFunctionPointers: false
-  PadOperators: false
+  Enabled: true
 AlignConsecutiveDeclarations:
-  Enabled: false
-  AcrossEmptyLines: false
-  AcrossComments: false
-  AlignCompound: false
-  AlignFunctionPointers: false
-  PadOperators: false
+  Enabled: true
 AlignConsecutiveMacros:
-  Enabled: false
-  AcrossEmptyLines: false
-  AcrossComments: false
-  AlignCompound: false
-  AlignFunctionPointers: false
-  PadOperators: false
+  Enabled: true
 AlignConsecutiveShortCaseStatements:
   Enabled: false
   AcrossEmptyLines: false
@@ -63,18 +43,18 @@ BinPackParameters: false
 BitFieldColonSpacing: Both
 BraceWrapping:
   AfterCaseLabel: false
-  AfterClass: true
+  AfterClass: false
   AfterControlStatement: MultiLine
-  AfterEnum: true
-  AfterExternBlock: true
-  AfterFunction: true
-  AfterNamespace: true
+  AfterEnum: false
+  AfterExternBlock: false
+  AfterFunction: false
+  AfterNamespace: false
   AfterObjCDeclaration: false
-  AfterStruct: true
-  AfterUnion: true
+  AfterStruct: false
+  AfterUnion: false
   BeforeCatch: false
   BeforeElse: false
-  BeforeLambdaBody: true
+  BeforeLambdaBody: false
   BeforeWhile: false
   IndentBraces: false
   SplitEmptyFunction: true
@@ -92,7 +72,7 @@ BreakBeforeTernaryOperators: true
 BreakConstructorInitializers: BeforeComma
 BreakInheritanceList: BeforeComma
 BreakStringLiterals: true
-ColumnLimit: 80
+ColumnLimit: 160
 CommentPragmas: '^ IWYU pragma:'
 CompactNamespaces: false
 ConstructorInitializerIndentWidth: 4
@@ -112,23 +92,19 @@ IfMacros:
   - KJ_IF_MAYBE
 IncludeBlocks: Regroup
 IncludeCategories:
-  # Standard library headers come before anything else
-  - Regex: '^<[a-z_]+>'
-    Priority: -1
-    SortPriority: 0
-    CaseSensitive: false
-  - Regex: '^<.+\.h(pp)?>'
+  - Regex: '^\"[[:alnum:]\_]+\.(h|hpp)\"'
+    Priority: 0
+  - Regex: '^\"[[:alnum:]\_\/]+\.(h|hpp)\"'
     Priority: 1
-    SortPriority: 0
-    CaseSensitive: false
-  - Regex: '^<.*'
+  - Regex: '^\<windows\.h\>'
     Priority: 2
-    SortPriority: 0
+    SortPriority: 1
     CaseSensitive: false
-  - Regex: '.*'
+  - Regex: '^\<.*\.(h|hpp|hxx)\>'
+    Priority: 2
+    SortPriority: 2
+  - Regex: '^\<[[:alnum:]\_]+\>'
     Priority: 3
-    SortPriority: 0
-    CaseSensitive: false
 IncludeIsMainRegex: ''
 IncludeIsMainSourceRegex: ''
 IndentAccessModifiers: false
@@ -136,9 +112,9 @@ IndentCaseBlocks: false
 IndentCaseLabels: true
 IndentExternBlock: NoIndent
 IndentGotoLabels: true
-IndentPPDirectives: AfterHash
+IndentPPDirectives: BeforeHash
 IndentRequiresClause: true
-IndentWidth: 2
+IndentWidth: 4
 IndentWrappedFunctionNames: false
 InsertBraces: true
 InsertNewlineAtEOF: true
@@ -179,7 +155,15 @@ PenaltyIndentedWhitespace: 0
 PenaltyReturnTypeOnItsOwnLine: 200
 PointerAlignment: Left
 PPIndentWidth: -1
-QualifierAlignment: Leave
+QualifierAlignment: Custom
+QualifierOrder:
+  - friend
+  - static
+  - constexpr
+  - inline
+  - volatile
+  - const
+  - type
 RawStringFormats:
   - Language: Cpp
     Delimiters:
@@ -248,7 +232,7 @@ SpaceBeforeParensOptions:
 SpaceBeforeRangeBasedForLoopColon: true
 SpaceBeforeSquareBrackets: false
 SpaceInEmptyBlock: false
-SpacesBeforeTrailingComments: 2
+SpacesBeforeTrailingComments: 1
 SpacesInAngles: Never
 SpacesInContainerLiterals: false
 SpacesInLineCommentPrefix:
@@ -261,13 +245,13 @@ SpacesInParensOptions:
   InEmptyParentheses: false
   Other: false
 SpacesInSquareBrackets: false
-Standard: Auto
+Standard: Latest
 StatementAttributeLikeMacros:
   - Q_EMIT
 StatementMacros:
   - Q_UNUSED
   - QT_REQUIRE_VERSION
-TabWidth: 8
+TabWidth: 4
 UseTab: Never
 VerilogBreakBetweenInstancePorts: true
 WhitespaceSensitiveMacros:

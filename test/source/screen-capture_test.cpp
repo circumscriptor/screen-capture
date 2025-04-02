@@ -16,10 +16,9 @@
 
 #include "screen-capture/screen-capture.hpp"
 
-auto main() -> int
-{
-  auto const exported = sc::screen_capture {};
+auto main() -> int {
+    const auto exported = sc::screen_capture {};
 
-  // return std::string("screen-capture") == exported.name() ? 0 : 1;
-  return 0;
+    // return std::string("screen-capture") == exported.name() ? 0 : 1;
+    return 0;
 }

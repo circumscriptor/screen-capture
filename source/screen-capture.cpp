@@ -16,9 +16,8 @@
 
 #include "screen-capture/screen-capture.hpp"
 
-namespace sc
-{
+namespace sc {
 
 screen_capture::~screen_capture() = default;
 
-}  // namespace sc
+} // namespace sc
