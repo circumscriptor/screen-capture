@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.14)
+cmake_minimum_required(VERSION 3.20)
 
 include(cmake/prelude.cmake)
 
@@ -24,6 +24,7 @@ pkg_search_module(PipeWire REQUIRED IMPORTED_TARGET libpipewire-0.3)
 add_library(
     screen-capture_screen-capture
     source/screen-capture.cpp
+    source/screen-capture-pipewire.cpp
 )
 add_library(screen-capture::screen-capture ALIAS screen-capture_screen-capture)
 

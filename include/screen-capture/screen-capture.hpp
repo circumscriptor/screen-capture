@@ -16,11 +16,12 @@
  *    limitations under the License.
  */
 
-#include <functional>
-
 #include "screen-capture/screen-capture_export.hpp"
 
-namespace sc {
+#include <functional>
+#include <memory>
+
+namespace cs {
 
 /**
  * @brief Main interface
@@ -38,9 +39,16 @@ public:
 
     virtual void set_frame_callback(frame_callback_type callback) = 0;
 
+    /**
+     * @brief Create screen capture instance for pipewire backend
+     * @note This call does not initialize pipewire library
+     * @return Unique pointer to screen capture instance
+     */
+    [[nodiscard]] static auto create_instance() -> std::unique_ptr<screen_capture>;
+
 private:
     // SCREEN_CAPTURE_SUPPRESS_C4251
     // std::string m_name;
 };
 
-} // namespace sc
+} // namespace cs
