@@ -19,7 +19,7 @@ auto screen_capture_pipewire::initialize_stream() -> bool {
         return false;
     }
 
-    m_properties = pw_properties_new(PW_KEY_MEDIA_TYPE, "Video", PW_KEY_MEDIA_CATEGORY, "Capture", PW_KEY_MEDIA_ROLE, "Scren", nullptr);
+    m_properties = pw_properties_new(PW_KEY_MEDIA_TYPE, "Video", PW_KEY_MEDIA_CATEGORY, "Capture", PW_KEY_MEDIA_ROLE, "Screen", nullptr);
     if (m_properties == nullptr) {
         return false;
     }
