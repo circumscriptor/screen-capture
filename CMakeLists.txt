@@ -13,6 +13,12 @@ project(
 include(cmake/project-is-top-level.cmake)
 include(cmake/variables.cmake)
 
+# ---- Find dependencies ----
+
+find_package(PkgConfig REQUIRED)
+
+pkg_search_module(PipeWire REQUIRED IMPORTED_TARGET libpipewire-0.3)
+
 # ---- Declare library ----
 
 add_library(
@@ -56,6 +62,11 @@ target_include_directories(
 )
 
 target_compile_features(screen-capture_screen-capture PUBLIC cxx_std_20)
+
+target_link_libraries(screen-capture_screen-capture
+    PRIVATE
+        PkgConfig::PipeWire
+)
 
 # ---- Install rules ----
 

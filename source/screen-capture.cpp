@@ -16,8 +16,33 @@
 
 #include "screen-capture/screen-capture.hpp"
 
+// #include <pipewire/pipewire.h>
+
 namespace sc {
 
 screen_capture::~screen_capture() = default;
+
+// Implementation derived class
+class screen_capture_impl : public screen_capture {
+public:
+    screen_capture_impl(const screen_capture_impl&)                    = delete;
+    screen_capture_impl(screen_capture_impl&&)                         = delete;
+    auto operator=(const screen_capture_impl&) -> screen_capture_impl& = delete;
+    auto operator=(screen_capture_impl&&) -> screen_capture_impl&      = delete;
+    ~screen_capture_impl() override                                    = default;
+
+    void set_frame_callback(frame_callback_type callback) override;
+
+private:
+    frame_callback_type m_callback;
+};
+
+//
+// Implementation
+//
+
+void screen_capture_impl::set_frame_callback(frame_callback_type callback) {
+    m_callback = callback;
+}
 
 } // namespace sc

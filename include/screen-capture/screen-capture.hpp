@@ -16,6 +16,8 @@
  *    limitations under the License.
  */
 
+#include <functional>
+
 #include "screen-capture/screen-capture_export.hpp"
 
 namespace sc {
@@ -25,12 +27,16 @@ namespace sc {
  */
 class SCREEN_CAPTURE_EXPORT screen_capture {
 public:
+    using frame_callback_type = std::function<void()>;
+
     screen_capture()                                         = default;
     screen_capture(const screen_capture&)                    = delete;
     screen_capture(screen_capture&&)                         = delete;
     auto operator=(const screen_capture&) -> screen_capture& = delete;
     auto operator=(screen_capture&&) -> screen_capture&      = delete;
     virtual ~screen_capture();
+
+    virtual void set_frame_callback(frame_callback_type callback) = 0;
 
 private:
     // SCREEN_CAPTURE_SUPPRESS_C4251

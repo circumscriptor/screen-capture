@@ -35,14 +35,12 @@ jobs:
     runs-on: ubuntu-24.04
 
     if: github.repository_owner == 'circumscriptor'
-      && false
 
     steps:
     - uses: actions/checkout@v4
 
-    - name: Install LCov
-      run: sudo apt-get update -q
-        && sudo apt-get install lcov -q -y
+    - name: Install Dependencies
+      run: sudo apt-get update -q && sudo apt-get install -y -q lcov libpipewire-0.3-dev
 
     - name: Configure
       run: cmake --preset=ci-coverage
@@ -72,6 +70,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+
+    - name: Install Dependencies
+      run: sudo apt-get update -q && sudo apt-get install -y -q libpipewire-0.3-dev
 
     - name: Configure
       run: cmake --preset=ci-sanitize
@@ -108,10 +109,9 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Install static analyzers
+    - name: Install Dependencies
       run: >-
-        sudo apt-get install clang-tidy-18 cppcheck -y -q
-
+        sudo apt-get update -q && sudo apt-get install -y -q clang-tidy-18 cppcheck libpipewire-0.3-dev &&
         sudo update-alternatives --install
         /usr/bin/clang-tidy clang-tidy
         /usr/bin/clang-tidy-18 180
@@ -140,7 +140,6 @@ jobs:
     if: github.ref == 'refs/heads/main'
       && github.event_name == 'push'
       && github.repository_owner == 'circumscriptor'
-      && false
 
     permissions:
       contents: write

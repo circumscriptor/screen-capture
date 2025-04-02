@@ -14,10 +14,10 @@
  *    limitations under the License.
  */
 
-#include "screen-capture/screen-capture.hpp"
+// #include "screen-capture/screen-capture.hpp"
 
 auto main() -> int {
-    const auto exported = sc::screen_capture {};
+    // const auto exported = sc::screen_capture {};
 
     // return std::string("screen-capture") == exported.name() ? 0 : 1;
     return 0;
